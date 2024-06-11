@@ -1,0 +1,57 @@
+<div style="background: rgb(151, 151, 236);">
+<div class="container mt-5 bg-">
+    <h2 class="text-center">Gestión de Empleados</h2>
+  
+    <form (ngSubmit)="anadirEmpleado()"  class="mb-4">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" [(ngModel)]="nuevoEmpleado.nombre" name="nombre" required class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="puesto">Puesto:</label>
+        <input id="puesto" [(ngModel)]="nuevoEmpleado.puesto" name="puesto" required class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input id="telefono" [(ngModel)]="nuevoEmpleado.telefono" name="telefono" required class="form-control">
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-3">Añadir Empleado</button>
+    </form>
+  
+    <h3 class="bg-success p-2 text-white mb-4">Lista de Empleados</h3>
+    <ul class="list-group">
+      <li *ngFor="let empleado of empleados" class="list-group-item d-flex justify-content-between align-items-center">
+        {{empleado.nombre}} - {{empleado.puesto}} - {{empleado.telefono}}
+        <div>
+          <button (click)="editarEmpleado(empleado)" class="btn btn-warning btn-sm me-2">Editar</button>
+          <button (click)="eliminarEmpleado(empleado.id)" class="btn btn-danger btn-sm">Eliminar</button>
+        </div>
+      </li>
+    </ul>
+  
+    <div *ngIf="empleadoSeleccionado" class="mt-4">
+      <h3>Editar Empleado</h3>
+      <form (ngSubmit)="actualizarEmpleado()">
+        <div class="form-group">
+          <label for="edit-nombre">Nombre:</label>
+          <input id="edit-nombre" [(ngModel)]="empleadoSeleccionado.nombre" name="edit-nombre" required class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="edit-puesto">Puesto:</label>
+          <input id="edit-puesto" [(ngModel)]="empleadoSeleccionado.puesto" name="edit-puesto" required class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="edit-telefono">Teléfono:</label>
+          <input id="edit-telefono" [(ngModel)]="empleadoSeleccionado.telefono" name="edit-telefono" required class="form-control">
+        </div>
+  
+        <button type="submit" class="btn btn-success mt-3">Actualizar</button>
+      </form>
+    </div>
+  </div>
+</div>
